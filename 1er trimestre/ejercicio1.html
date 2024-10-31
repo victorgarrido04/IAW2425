@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 - Javascript</title>
+    <style>
+    
+    body{
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    div{
+        width: 200px;
+        height: 200px;
+        margin: 20px;
+        border-radius: 100%;
+    }
+
+    .contenedor{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .rojo{  
+        background-color: red;
+    }  
+     
+    .verde{
+        background-color: green;
+    }
+
+    .azul{
+        background-color: blue;
+    }
+
+    .boton{
+        width: 200px;
+        height: 50px;
+        border-radius: 5px;
+        margin: 10px;
+    }
+
+    .botonera{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+
+    <div class="rojo"></div>
+    <div class="verde"></div>
+    <div class="azul"></div>
+
+</div>
+
+
+<div class="botonera">
+
+    <button onclick="ocultar('rojo')">Ocultar</button>
+    <button onclick="ocultar('verde')">Ocultar</button>
+    <button onclick="ocultar('azul')">Ocultar</button>
+
+</div>
+
+<script>
+    function ocultar(id){
+        document.getElementsByClassName(id)[0].style.visibility="hidden";
+    }
+</script>
+</body>
+</html>
