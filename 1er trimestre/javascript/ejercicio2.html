@@ -3,20 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 2 - Javascript</title>
-    <style>
-
-    </style>
+    <title>Ejercicio 2 - Conversor de Monedas</title>
 </head>
 <body>
-    <div class="formulario">
-        <h2>Conversor de Monedas</h2>
-        <form id="convertirForm" onsubmit="return false;">
-            <label for="valor">Introduce un valor numérico:</label>
-            <input type="text" id="valor" placeholder="">
-            <button onclick="convertirAEuros()">Convertir a Euros</button>
-            <button onclick="convertirADolares()">Convertir a Dólares</button>
-        </form>
-    </div>
+
+
+<h2>Conversor de Monedas</h2>
+<form id="convertirForm" onsubmit="return false;">
+        <label for="valor">Introduce un valor numérico:</label>
+        <input type="text" id="valor" placeholder="" />
+        <button onclick="convertirAEuros()">Convertir a Euros</button>
+        <button onclick="convertirADolares()">Convertir a Dólares</button>
+</form>
+<p id="resultado"></p>
+
+
+<script>
+    const tasaDolarAEuro = 0.85;
+    const tasaEuroADolar = 1.18;
+
+    function convertirAEuros() {
+        const valor = parseFloat(document.getElementById("valor").value);
+        if (validarValor(valor)) {
+            const resultado = valor * tasaDolarAEuro;
+            document.getElementById("resultado").innerText = `Valor en Euros: €${resultado.toFixed(2)}`;
+        }
+    }
+
+    function convertirADolares() {
+        const valor = parseFloat(document.getElementById("valor").value);
+        if (validarValor(valor)) {
+            const resultado = valor * tasaEuroADolar;
+            document.getElementById("resultado").innerText = `Valor en Dólares: $${resultado.toFixed(2)}`;
+        }
+    }
+
+    function validarValor(valor) {
+        if (isNaN(valor) || valor <= 0) {
+            alert("Por favor, introduce un valor numérico positivo.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
 </body>
 </html>
