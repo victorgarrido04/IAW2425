@@ -5,77 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 1 - Javascript</title>
     <style>
-    
-    body{
-        display: flex;
-        justify-content: center;
-        height: 100vh;
-    }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
 
-    div{
-        width: 200px;
-        height: 200px;
-        margin: 20px;
-        border-radius: 100%;
-    }
+        .contenedor {
+            display: flex;
+            justify-content: center;
+        }
 
-    .contenedor{
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
+        .circulo {
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+        }
 
-    .rojo{  
-        background-color: red;
-    }  
-     
-    .verde{
-        background-color: green;
-    }
+        .rojo {  
+            background-color: red;
+        }  
+        
+        .verde {
+            background-color: green;
+        }
 
-    .azul{
-        background-color: blue;
-    }
+        .azul {
+            background-color: blue;
+        }
 
-    .boton{
-        width: 200px;
-        height: 50px;
-        border-radius: 5px;
-        margin: 10px;
-    }
+        .boton {
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
 
-    .botonera{
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-
+        .circulo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
 
 <div class="contenedor">
-
-    <div class="rojo"></div>
-    <div class="verde"></div>
-    <div class="azul"></div>
-
-</div>
-
-
-<div class="botonera">
-
-    <button onclick="ocultar('rojo')">Ocultar</button>
-    <button onclick="ocultar('verde')">Ocultar</button>
-    <button onclick="ocultar('azul')">Ocultar</button>
-
+    <div class="circulo-container">
+        <div class="circulo rojo"></div>
+        <button class="boton" onclick="ocultar('rojo')">Ocultar</button>
+    </div>
+    <div class="circulo-container">
+        <div class="circulo verde"></div>
+        <button class="boton" onclick="ocultar('verde')">Ocultar</button>
+    </div>
+    <div class="circulo-container">
+        <div class="circulo azul"></div>
+        <button class="boton" onclick="ocultar('azul')">Ocultar</button>
+    </div>
 </div>
 
 <script>
-    function ocultar(id){
-        document.getElementsByClassName(id)[0].style.visibility="hidden";
+    function ocultar(color) {
+        document.querySelector(`.${color}`).style.visibility = "hidden";
     }
 </script>
+
 </body>
 </html>
