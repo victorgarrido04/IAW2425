@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes de Texto</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+        }
+
+        .mensaje-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .mensajes-container {
+            width: 100%;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .mensaje {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .papelera {
+            color: red;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="mensaje-form">
+    <input type="text" id="mensaje" placeholder="Escribe un mensaje..." />
+    <button onclick="agregarMensaje()">Enviar</button>
+    <button onclick="ordenarMensajes()">Ordenar</button>
+</div>
+
+<div class="mensajes-container" id="mensajesContainer"></div>
+
+<script>
+    let mensajes = [];
+
+    function agregarMensaje() {
+        const input = document.getElementById("mensaje");
+        const texto = input.value.trim();
+
+        if (texto) {
+            mensajes.push(texto);
+            input.value = ""; // Limpiar el campo de entrada
+            mostrarMensajes();
+        } else {
+            alert("Escribe un mensaje antes de enviar.");
+        }
+    }
+
+    function mostrarMensajes() {
+        const contenedor = document.getElementById("mensajesContainer");
+        contenedor.innerHTML = ""; // Limpiar mensajes previos
+
+        mensajes.forEach((mensaje, index) => {
+            const mensajeDiv = document.createElement("div");
+            mensajeDiv.classList.add("mensaje");
+
+            // Texto del mensaje
+            const mensajeTexto = document.createElement("span");
+            mensajeTexto.innerText = mensaje;
+
+            // Icono de papelera para eliminar mensaje
+            const papelera = document.createElement("span");
+            papelera.classList.add("papelera");
+            papelera.innerHTML = "🗑️";
+            papelera.onclick = () => eliminarMensaje(index);
+
+            mensajeDiv.appendChild(mensajeTexto);
+            mensajeDiv.appendChild(papelera);
+            contenedor.appendChild(mensajeDiv);
+        });
+    }
+
+    function eliminarMensaje(index) {
+        mensajes.splice(index, 1); // Eliminar el mensaje del array
+        mostrarMensajes();
+    }
+
+    function ordenarMensajes() {
+        mensajes.sort(); // Ordenar alfabéticamente
+        mostrarMensajes();
+    }
+</script>
+
+</body>
+</html>
