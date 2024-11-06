@@ -49,6 +49,11 @@
             font-weight: bold;
             font-size: 18px;
         }
+
+        img {
+            width: 25px;
+            height: 25px;
+        }
     </style>
 </head>
 <body>
@@ -83,7 +88,7 @@
 
         mensajes.forEach((mensaje, index) => {
             const mensajeDiv = document.createElement("div");
-            mensajeDiv.classList.add("mensaje");
+            mensajeDiv.setAttribute("class", "mensaje"); // Añadir clase de mensaje
 
             // Texto del mensaje
             const mensajeTexto = document.createElement("span");
@@ -91,8 +96,8 @@
 
             // Icono de papelera para eliminar mensaje
             const papelera = document.createElement("span");
-            papelera.classList.add("papelera");
-            papelera.innerHTML = "🗑️";
+            papelera.setAttribute("class", "papelera"); // Añadir clase de papelera
+            papelera.innerHTML = "<img src='https://images.emojiterra.com/google/noto-emoji/unicode-15/color/512px/1f5d1.png'>";
             papelera.onclick = () => eliminarMensaje(index);
 
             mensajeDiv.appendChild(mensajeTexto);
@@ -102,7 +107,7 @@
     }
 
     function eliminarMensaje(index) {
-        mensajes.splice(index, 1); // Eliminar el mensaje del array
+        mensajes.splice(index, 1); // Eliminar el mensaje
         mostrarMensajes();
     }
 
@@ -114,3 +119,4 @@
 
 </body>
 </html>
+
