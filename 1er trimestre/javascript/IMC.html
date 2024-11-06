@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        body {
+            display: flex;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculadora-imc">
+    <h2>Calculadora de IMC</h2>
+    <form onsubmit="return false;">
+        <label for="altura">Altura en cm:</label>
+        <input type="text" id="altura" placeholder="" />
+        <label for="peso">Masa en kg:</label>
+        <input type="text" id="peso" placeholder="" />
+        <button onclick="calcularIMC()">Calcular IMC</button>
+    </form>
+    <div id="resultado"></div>
+</div>
+
+<script>
+    function calcularIMC() {
+        const altura = parseFloat(document.getElementById("altura").value);
+        const peso = parseFloat(document.getElementById("peso").value);
+
+        if (validarDatos(altura, peso)) {
+            // Convertimos altura de cm a metros y calculamos IMC
+            const alturaMetros = altura / 100;
+            const imc = peso / (alturaMetros * alturaMetros);
+
+            // Determinamos la clasificación en base al IMC
+            let clasificacion;
+            if (imc < 18.5) {
+                clasificacion = "Peso bajo";
+            } else if (imc >= 18.5 && imc < 24.9) {
+                clasificacion = "Peso normal";
+            } else if (imc >= 25 && imc < 29.9) {
+                clasificacion = "Sobrepeso";
+            } else {
+                clasificacion = "Obesidad";
+            }
+
+            // Mostramos el resultado
+            document.getElementById("resultado").innerText = 
+                `Tu IMC es: ${imc.toFixed(2)} (${clasificacion})`;
+        }
+    }
+
+    function validarDatos(altura, peso) {
+        if (isNaN(altura) || altura <= 0) {
+            alert("Por favor, introduce una altura válida en centímetros.");
+            return false;
+        }
+        if (isNaN(peso) || peso <= 0) {
+            alert("Por favor, introduce un peso válido en kilogramos.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+</body>
+</html>
