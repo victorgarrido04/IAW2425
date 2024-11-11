@@ -9,12 +9,19 @@
 <body>
     <h1>Ejemplo de JQuery</h1>
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique commodi aliquid neque adipisci, odit quisquam ab accusantium, eos veniam cum rem exercitationem hic voluptate placeat tempora nemo mollitia libero reprehenderit.</p>
-    <button>Click para probar JQuery</button>
+    <button class="ocultar">Click para ocultar párrafo</button>
+    <button class="mostrar">Click para mostrar párrafo</button>
+    <button class="alternar">Click para alternar párrafo</button>
     <script>
-        $(document).ready(function () {
-            //cuando la pagina haya arrancado, ejecuta lo que este dentro del jqdocready
-            $("button").click(function(){
+        $(document).ready(function () {//cuando la pagina haya arrancado, ejecuta lo que este dentro del jqdocready
+            $("button.ocultar").click(function(){
                 $("p").hide();
+            })
+            $("button.mostrar").click(function(){
+                $("p").show();
+            })
+            $("button.alternar").click(function(){
+                $("p").toggle();
             })
         }); 
     </script>
