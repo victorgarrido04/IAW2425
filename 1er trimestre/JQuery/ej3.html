@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 - JQuery</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h1 id="encabezado">Encabezado nivel 1</h1>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit commodi non quis, modi sequi expedita, laborum, facere doloribus eius aliquam asperiores numquam itaque. Earum corporis nulla illum sequi corrupti. Laudantium.</p>
+    <p class="pares">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium consequatur iusto nulla quia ipsam aut voluptatum animi sit, dignissimos atque doloribus suscipit, deleniti harum. Quibusdam alias sapiente laudantium sunt accusantium?</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus iure consequatur quam hic quisquam placeat perferendis voluptatibus illum architecto ratione, dolor voluptates, tempora ipsa doloremque at molestias similique quis asperiores!</p>
+    <p class="pares">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat sint pariatur repellendus. Animi maiores nulla laborum quo. Repellat eos nulla nostrum, itaque magni culpa saepe minima, fugiat dignissimos similique possimus!</p>
+    <button class="mas">Más grande</button>
+    <button class="menos">Menos grande</button>
+    <script>
+        $(document).ready(function () {
+            $(".mas").click(function(){
+                $(".pares,#encabezado").animate({
+                    fontSize: '+=20px'
+                });
+            })
+            $(".menos").click(function(){
+                $(".pares,#encabezado").animate({
+                    fontSize: '-=20px'
+                });
+            })
+        });
+    </script>
+</body>
+</html>
