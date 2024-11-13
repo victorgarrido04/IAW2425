@@ -7,23 +7,22 @@
     <script src="jquery-3.7.1.min.js"></script>
 </head>
 <body>
-    <h1>Ejemplo de JQuery</h1>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique commodi aliquid neque adipisci, odit quisquam ab accusantium, eos veniam cum rem exercitationem hic voluptate placeat tempora nemo mollitia libero reprehenderit.</p>
-    <button class="ocultar">Click para ocultar párrafo</button>
-    <button class="mostrar">Click para mostrar párrafo</button>
-    <button class="alternar">Click para alternar párrafo</button>
+    <h1>Encabezado nivel 1</h1>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit commodi non quis, modi sequi expedita, laborum, facere doloribus eius aliquam asperiores numquam itaque. Earum corporis nulla illum sequi corrupti. Laudantium.</p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium consequatur iusto nulla quia ipsam aut voluptatum animi sit, dignissimos atque doloribus suscipit, deleniti harum. Quibusdam alias sapiente laudantium sunt accusantium?</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus iure consequatur quam hic quisquam placeat perferendis voluptatibus illum architecto ratione, dolor voluptates, tempora ipsa doloremque at molestias similique quis asperiores!</p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat sint pariatur repellendus. Animi maiores nulla laborum quo. Repellat eos nulla nostrum, itaque magni culpa saepe minima, fugiat dignissimos similique possimus!</p>
+    <button class="ocultar">Ocultar</button>
+    <button class="aparecer">Aparecer</button>
     <script>
-        $(document).ready(function () {//cuando la pagina haya arrancado, ejecuta lo que este dentro del jqdocready
+        $(document).ready(function () {
             $(".ocultar").click(function(){
-                $("p").hide();
+                $("p,h1").hide();
             })
-            $(".mostrar").click(function(){
-                $("p").show();
+            $(".aparecer").click(function(){
+                $("p,h1").show();
             })
-            $(".alternar").click(function(){
-                $("p").toggle();
-            })
-        }); 
+        });
     </script>
 </body>
 </html>

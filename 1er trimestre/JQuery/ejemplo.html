@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 - JQuery</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h1>Ejemplo de JQuery</h1>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique commodi aliquid neque adipisci, odit quisquam ab accusantium, eos veniam cum rem exercitationem hic voluptate placeat tempora nemo mollitia libero reprehenderit.</p>
+    <button class="ocultar">Click para ocultar párrafo</button>
+    <button class="mostrar">Click para mostrar párrafo</button>
+    <button class="alternar">Click para alternar párrafo</button>
+    <script>
+        $(document).ready(function () {//cuando la pagina haya arrancado, ejecuta lo que este dentro del jqdocready
+            $(".ocultar").click(function(){
+                $("p").hide();
+            })
+            $(".mostrar").click(function(){
+                $("p").show();
+            })
+            $(".alternar").click(function(){
+                $("p").toggle();
+            })
+        }); 
+    </script>
+</body>
+</html>
