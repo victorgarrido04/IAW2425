@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Photos</title>
+    <script src="../jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <button id="getPhotos">Obtener Posts</button>
+    <ul id="photosList"></ul>
+
+    <script>
+        $(document).ready(function () {
+            $('#getPhotos').click(function () {
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/photos',
+                    method: 'GET',
+                    success: function (data) {
+                        $('#photosList').empty(); // Limpiar el contenedor de fotos
+                        const photos = data.slice(0, 50); // Mostrar solo las primeras 50 fotos
+                        photos.forEach(function (photo) {
+                            // Crear un div para cada foto
+                            const photoHtml = `
+                                <div>
+                                    <img src="${photo.thumbnailUrl}">
+                                    <p class="photo-title">${photo.title}</p>
+                                </div>
+                            `;
+                            $('#photosList').append(photoHtml);
+                        });
+                    },
+                    error: function () {
+                        alert('Ha ocurrido un error al cargar las photos.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
