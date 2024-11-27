@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts</title>
+    <script src="../jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <button id="getPosts">Obtener Posts</button>
+    <ul id="postList"></ul>
+
+    <script>
+        $(document).ready(function () {
+            $('#getPosts').click(function () {
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/posts',
+                    method: 'GET',
+                    success: function (data) {
+                        $('#postList').empty(); // Limpia el contenedor de los posts
+                        data.forEach(function (post) {
+                            // Crear un div para los posts
+                            const postHtml = `
+                                <div class="post">
+                                    <h3>${post.title}</h3>
+                                    <p>${post.body}</p>
+                                </div>
+                            `;
+                            $('#postList').append(postHtml);
+                        });
+                    },
+                    error: function () {
+                        alert('Ha ocurrido un error al cargar los posts.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
