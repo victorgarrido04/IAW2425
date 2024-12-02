@@ -1,8 +1,6 @@
 <?php
-// Configurar la zona horaria
-date_default_timezone_set('Europe/Madrid'); // Cambia según tu zona horaria
+    $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+    $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 
-// Obtener la fecha y hora actual
-$fechaHora = new DateTime();
-echo "La fecha y hora actual es: " . $fechaHora->format('l, d \d\e F \d\e Y, H:i:s');
+    echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
 ?>
