@@ -1,16 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piramide Asteriscos</title>
-</head>
-<body>
-    <h1>Introduce un numero positivo</h1>
-    <input type="number" name="" id="">
-    <button type="submit">Enviar</button>
-=======
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -54,6 +42,5 @@
         }
     }
     ?>
->>>>>>> 2f06170dc14bb1b3cabaa1c388356c9d0cf88d6d
 </body>
 </html>
