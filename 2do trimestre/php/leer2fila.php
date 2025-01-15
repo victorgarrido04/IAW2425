@@ -11,7 +11,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, username, password FROM usuarios";
+$sql = "SELECT id, username, password FROM usuarios LIMIT 2";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

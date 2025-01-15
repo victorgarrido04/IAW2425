@@ -11,12 +11,12 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, username, password FROM usuarios";
+$sql = "SELECT id, username, password FROM usuarios LIMIT 1";
 $result = $conn->query($sql);
 
-if ($result->num_rows > 2) {
+if ($result->num_rows > 0) {
   // output data of each row
-  while($row = $result) {
+  while($row = $result->fetch_assoc()) {
     echo "id: " . $row["id"]. " - Name: " . $row["username"]. " - Contra: " . $row["password"]. "<br>";
   }
 } else {
