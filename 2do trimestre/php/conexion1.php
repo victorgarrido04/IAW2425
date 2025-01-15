@@ -11,4 +11,4 @@
         die("Falló la conexión: " . mysqli_connect_error());
     }
     echo "Conexión exitosa";
-?>
+    ?>
