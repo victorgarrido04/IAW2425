@@ -11,13 +11,12 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO usuarios (id, username, password)
-VALUES ('4', 'PacuPacu', 'PacuPacu4')";
+$sql = "UPDATE usuarios SET id=0 WHERE id=1";
 
 if ($conn->query($sql) === TRUE) {
-  echo "<p>New record created successfully</p>";
+  echo "Record updated successfully";
 } else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "Error updating record: " . $conn->error;
 }
 
 
