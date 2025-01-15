@@ -20,7 +20,6 @@ if ($conn->query($sql) === TRUE) {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-<br>
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
