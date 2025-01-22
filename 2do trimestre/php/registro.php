@@ -78,4 +78,3 @@ mysqli_close($enlace);
     </form>
 </body>
 </html>
-sdgsdg
