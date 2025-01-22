@@ -1,64 +1,66 @@
 <?php
-// Datos de conexión a la base de datos
-$servername = "sql308.thsite.top";
-$username_db = "thsi_38097494";
-$password_db = "fDxz?Ica";
-$dbname = "thsi_38097494_bdpruebas";
+// Conexión a la base de datos
+$servername = "sql308.thsite.top"; // Nombre del servidor
+$username = "thsi_38097494"; // Nombre de usuario
+$password = "fDxz?Ica"; // Contrasena
+$database = "thsi_38097494_bdpruebas";
+$enlace = mysqli_connect($servername, $username, $password, $database);
 
-try {
-    // Conexión a la base de datos
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username_db, $password_db);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Error al conectar con la base de datos: " . $e->getMessage());
+// Verificar conexión
+if (!$enlace) {
+    die("Conexión fallida: " . mysqli_connect_error());
 }
 
-// Verificar si se envió el formulario
+// Procesar formulario al enviarlo
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuario = $_POST['username'] ?? '';
-    $contrasena = $_POST['password'] ?? '';
+    // Validar que los campos no estén vacíos
+    if (empty($_POST['email']) || empty($_POST['password'])) {
+        die("Error: Todos los campos son obligatorios.");
+    }
 
-    if (!empty($usuario) && !empty($contrasena)) {
-        // Consulta para verificar credenciales
-        $sql = "SELECT * FROM usuarios WHERE username = :username AND password = :password";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':username', $usuario, PDO::PARAM_STR);
-        $stmt->bindParam(':password', $contrasena, PDO::PARAM_STR);
+    // Saneamiento de las entradas
+    $email = htmlspecialchars(trim($_POST['email']));
+    $password = htmlspecialchars(trim($_POST['password']));
 
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Consultar el usuario por email
+    $query = "SELECT * FROM usuarios WHERE email='$email'";
+    $resultado = mysqli_query($enlace, $query);
 
-        if ($user) {
-            // Inicio de sesión exitoso
-            echo "Bienvenido, " . htmlspecialchars($usuario) . "!";
+    if (mysqli_num_rows($resultado) === 1) {
+        // Recuperar los datos del usuario
+        $usuario = mysqli_fetch_assoc($resultado);
+
+        // Usar el hash almacenado como el salt para cifrar la contraseña ingresada
+        $password_hashed = crypt($password, $usuario['password']);
+
+        // Verificar la contraseña (comparación estricta)
+        if ($usuario['password'] === $password){ // CASO 1 (GRAN ERROR)
+        //if (hash_equals($usuario['password'], $password_hashed)) {
+            echo "Inicio de sesión exitoso. Bienvenido, " . $usuario['nombre'] . "!";
         } else {
-            // Credenciales incorrectas
-            echo "Usuario o contraseña incorrectos.";
+            echo "Error: Contraseña incorrecta." . $password_hashed . " es diferente de " . $usuario['password'];
         }
     } else {
-        echo "Por favor, completa todos los campos.";
+        echo "Error: Usuario no encontrado.";
     }
 }
+
+mysqli_close($enlace);
 ?>
 
+<!-- Formulario de inicio de sesión -->
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 <body>
-    <h1>Iniciar sesión</h1>
     <form method="POST" action="login.php">
-        <label for="username">Usuario:</label>
-        <input type="text" name="username" id="username" required>
-        <br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
         <label for="password">Contraseña:</label>
-        <input type="password" name="password" id="password" required>
-        <br><br>
+        <input type="password" id="password" name="password" required><br>
         <button type="submit">Iniciar sesión</button>
     </form>
 </body>
 </html>
-   
