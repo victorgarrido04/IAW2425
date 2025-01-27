@@ -1,7 +1,7 @@
 <?php
 $servername = "sql308.thsite.top";
 $username = "thsi_38097494";
-$password = "fDxz?Ica";
+$password = "******";
 $database = "thsi_38097494_proyectovictor";
 
 $conn = new mysqli($servername, $username, $password, $database);
